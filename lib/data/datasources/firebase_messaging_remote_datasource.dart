@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_seller_app/data/datasources/auth_local_datasource.dart';
+import 'package:flutter_seller_app/data/datasources/auth_remote_datasource.dart';
 
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
@@ -17,7 +19,7 @@ class FirebaseMessagingRemoteDatasource {
     await _firebaseMessaging.requestPermission();
 
     final initializationSettingsAndroid =
-        const AndroidInitializationSettings('ic_seller');
+        const AndroidInitializationSettings('seller');
     final initializationSettingsIOS = DarwinInitializationSettings(
         requestAlertPermission: true,
         requestBadgePermission: true,
@@ -36,6 +38,10 @@ class FirebaseMessagingRemoteDatasource {
     final fcmToken = await _firebaseMessaging.getToken();
 
     print('Token: $fcmToken');
+
+    if (await AuthLocalDatasource().isLogin()) {
+      AuthRemoteDatasource().updateFcmToken(fcmToken ?? '');
+    }
 
     FirebaseMessaging.instance.getInitialMessage();
     FirebaseMessaging.onMessage.listen((message) {
