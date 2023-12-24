@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "808763485139",
+    "project_id": "seller-app-d8071",
+    "storage_bucket": "seller-app-d8071.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808763485139:android:21cde15c39b540986e5d26",
+        "android_client_info": {
+          "package_name": "com.example.flutter_seller_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOPVnR2y-GAKquIhK-a5UKnnaUxMwmORc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
